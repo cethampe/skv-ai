@@ -85,13 +85,15 @@ app.post('/send', function(req, res) {
 	    Db.transaction(function(t) {
 	      
 	      Db.models.message.create({content: req.body.text, type: req.body.type, sessionId: sess.id } )
-		.then(msg => {
-      console.log(JSON.stringify(msg));
-      msg.user = 'Mimer';
-      msg.type = 0;
-      msg.content = message_corpus[Math.floor(Math.random()*message_corpus.length)];
-		  res.status(200).send(msg);
-		});
+		      .then(msg => {
+              let cmsg = {
+                type: 0,
+                content: generate_a_reply(msg.content)
+              };
+
+              Db.models.message.create({content: cmsg.content, type: cmsg.type, sessionId: sess.id })
+                .then(msg2 => res.status(200).send(msg2));
+		      });
 		
 	    }).then(function(result) { 
 	      console.log('Transaction OK');
@@ -103,6 +105,10 @@ app.post('/send', function(req, res) {
     });
 
 });
+
+function generate_a_reply(txt) {
+  return message_corpus[Math.floor(Math.random()*message_corpus.length)];
+}
 
 var message_corpus = [
   'Godag yxskaft',

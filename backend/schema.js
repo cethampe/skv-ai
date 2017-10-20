@@ -100,10 +100,10 @@ const Message = new GraphQLObjectType({
                     return msg.id;
                 }
             },
-            title: {
-                type: GraphQLString,
+            type: {
+                type: GraphQLInt,
                 resolve(msg) {
-                    return msg.title;
+                    return msg.type;
                 }
             },
             content: {
@@ -114,7 +114,7 @@ const Message = new GraphQLObjectType({
             }, 
             session: {
                 type: Session,
-                resolv(msg) {
+                resolve(msg) {
                     return msg.getSession();
                 }
             }
