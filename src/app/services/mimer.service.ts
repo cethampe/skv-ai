@@ -19,10 +19,15 @@ export class MimerService {
 
     }
 
+    getOptions(): RequestOptions {
+        // return new RequestOptions({ withCredentials: true });
+        return new RequestOptions();
+    }
+    
     // -------------  chatt   -------------------
 
     sendChattMessage(msg: ChattMessage): Observable<ChattMessage> {
-        return this.http.post(this.url + 'send', msg)
+        return this.http.post(this.url + 'send', msg, this.getOptions())
             .map(function(res) { console.log(res); return new ChattMessage(); } );
     }
 

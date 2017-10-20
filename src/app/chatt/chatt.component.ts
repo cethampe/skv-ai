@@ -8,9 +8,8 @@ import { ChattMessage } from "../shared/chatt.message";
   styleUrls: ['./chatt.component.css']
 })
 export class ChattComponent implements OnInit {
-    @Output() newPerson: EventEmitter<ChattMessage> = new EventEmitter<ChattMessage>();
-
     @Input() chattmsg: ChattMessage;
+    @Output() newChattMessage: EventEmitter<ChattMessage> = new EventEmitter<ChattMessage>();
 
     constructor(private mimerservice: MimerService) {
     }
@@ -28,7 +27,7 @@ export class ChattComponent implements OnInit {
         let self = this;
 
         this.chattmsg.type = 1;
-        this.chattmsg.user = 'hampe';
+        this.chattmsg.user = 'thomas.hamren@skatteverket.se';
 
         this.mimerservice.sendChattMessage(this.chattmsg)
             .subscribe(function(chattmsg) {
