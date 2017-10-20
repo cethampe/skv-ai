@@ -10,6 +10,8 @@ import { DataTableModule, SharedModule, GMapModule, GrowlModule,
          InputSwitchModule, CalendarModule } from 'primeng/primeng';
 */
 
+import { ButtonModule, InputTextareaModule } from 'primeng/primeng';
+
 // Egna komponenter
 import { AppComponent } from './app.component';
 import { ChattComponent } from './chatt/chatt.component';
@@ -27,7 +29,9 @@ import { MimerService } from './services/mimer.service';
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    ButtonModule,
+    InputTextareaModule
   ],
   providers: [AuthService, MimerService],
   bootstrap: [AppComponent]

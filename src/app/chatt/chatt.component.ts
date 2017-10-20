@@ -11,6 +11,8 @@ export class ChattComponent implements OnInit {
     @Input() chattmsg: ChattMessage;
     @Output() newChattMessage: EventEmitter<ChattMessage> = new EventEmitter<ChattMessage>();
 
+    chattreply: ChattMessage;
+
     constructor(private mimerservice: MimerService) {
     }
 
@@ -20,6 +22,7 @@ export class ChattComponent implements OnInit {
 
     clear(): void {
         this.chattmsg = new ChattMessage();
+        this.chattreply = new ChattMessage();
     }
 
     store(): void {
@@ -31,7 +34,8 @@ export class ChattComponent implements OnInit {
 
         this.mimerservice.sendChattMessage(this.chattmsg)
             .subscribe(function(chattmsg) {
-                console.log(JSON.stringify(chattmsg));
+                console.log('ChattReply=' + JSON.stringify(chattmsg));
+                self.chattreply.text = chattmsg.text;
             });
     }
 

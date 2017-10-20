@@ -28,7 +28,12 @@ export class MimerService {
 
     sendChattMessage(msg: ChattMessage): Observable<ChattMessage> {
         return this.http.post(this.url + 'send', msg, this.getOptions())
-            .map(function(res) { console.log(res); return new ChattMessage(); } );
+            .map(function(body) {
+                let msg = body.json();
+                let ret = new ChattMessage(msg);
+
+                return ret;
+            } );
     }
 
     getAllChattSession(userid: number): Observable<ChattSession[]> {
@@ -59,13 +64,7 @@ export class MimerService {
                 let ret = [];
                 let messages = body.json();
                 for(let i = 0; i < messages.length; i++) {
-                    let cm = new ChattMessage();
-                    cm.id = messages[i].id;
-                    cm.text = messages[i].title;
-                    cm.user = messages[i].personId;
-                    cm.type = messages[i].type;
-
-                    ret.push(cm);
+                    ret.push(new ChattMessage(messages[i]));
                 }
 
                 return ret;

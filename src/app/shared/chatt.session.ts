@@ -6,4 +6,12 @@ export class ChattSession {
     personId: number;
 
     messages: ChattMessage[];
+
+    constructor(sess?: Object) {
+        if (sess) {
+            this.id = sess['id'];
+            this.title = sess['title'];
+            this.personId = sess['personId'];
+        }
+    }
 };

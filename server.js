@@ -86,7 +86,10 @@ app.post('/send', function(req, res) {
 	      
 	      Db.models.message.create({content: req.body.text, type: req.body.type, sessionId: sess.id } )
 		.then(msg => {
-		  console.log(JSON.stringify(msg));
+      console.log(JSON.stringify(msg));
+      msg.user = 'Mimer';
+      msg.type = 0;
+      msg.content = message_corpus[Math.floor(Math.random()*message_corpus.length)];
 		  res.status(200).send(msg);
 		});
 		
@@ -100,6 +103,14 @@ app.post('/send', function(req, res) {
     });
 
 });
+
+var message_corpus = [
+  'Godag yxskaft',
+  'Jättebra',
+  'Och själv?',
+  'Hejsan, jag är Mimer och jag är redo att svara på dina frågor.',
+  'Fortsätt'
+];
 
 
 // -------------   Lyssnar på porten   ---------------

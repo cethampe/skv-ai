@@ -1,19 +1,19 @@
 <div class="skvai chatt">
-    <form>
-        <table>
-            <tr>
-                <td>meddelande:</td>
-                <td><input type="text" pInputText [(ngModel)]="chattmsg.text" [ngModelOptions]="{standalone: true}"/></td>
-            </tr>
-        </table>
-    </form>
-
-   <button pButton type="button" label="Rensa" (click)="clear()">Rensa</button>
-    <span *ngIf="chattmsg.id != null && chattmsg.id > 0">
-        <button  type="button" label="Spara" (click)="store()"></button>
-    </span>
-    <span *ngIf="chattmsg.id == null || chattmsg.id == 0">
-        <button  type="button" label="Ny" (click)="store()">Ny</button>
-    </span>
-
+    <table>
+        <tr>
+            <td>
+                <textarea [(ngModel)]="chattmsg.text" [rows]="5" [cols]="30" pInputTextarea autoResize="autoResize"></textarea>
+            </td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td>
+                    <textarea [(ngModel)]="chattreply.text" [rows]="5" [cols]="30" pInputTextarea autoResize="autoResize"></textarea>                    
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button pButton type="button" label="Skicka" (click)="store()"></button>    
+            </td>
+            <td></td>
+        </tr>
+    </table>
 </div>
