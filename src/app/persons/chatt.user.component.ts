@@ -1,8 +1,9 @@
 import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
-import { Apollo, ApolloQueryObservable } from 'apollo-angular'
+// import { Apollo, ApolloQueryObservable } from 'apollo-angular'
 import { ChattUser } from '../shared/chatt.user';
+import { MimerService } from '../services/mimer.service';
 
-import gql from 'graphql-tag';
+// import gql from 'graphql-tag';
 
 @Component({
   selector: 'chatt-user',
@@ -13,9 +14,9 @@ export class ChattUserComponent implements OnInit {
     @Input() chattuser: ChattUser;
     @Output() newUser: EventEmitter<ChattUser> = new EventEmitter<ChattUser>();
 
-    users: ApolloQueryObservable<any>;
+    // users: ApolloQueryObservable<any>;
 
-    constructor(private apollo: Apollo) {
+    constructor(private mimer: MimerService) {
     }
 
     ngOnInit() {
