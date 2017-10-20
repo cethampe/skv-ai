@@ -2,8 +2,8 @@ import { ChattMessage } from './chatt.message';
 
 export class ChattSession {
     id: number;
-    time: number;
+    title: string;
+    personId: number;
 
     messages: ChattMessage[];
-
-}
+};

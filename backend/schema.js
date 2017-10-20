@@ -39,7 +39,7 @@ const Person = new GraphQLObjectType({
             },
             sessions: {
                 type: new GraphQLList(Session),
-                resolv(person) {
+                resolve(person) {
                     console.log(person.id);
                     return person.getSessions();
                 }
@@ -74,16 +74,17 @@ const Session = new GraphQLObjectType({
             }, 
             person: {
                 type: Person,
-                resolv(sess) {
+                resolve(sess) {
                     return sess.getPerson();
                 }
             },
-	    messages: {
-		type: new GraphQLList(Message),
-		resolv(sess) {
-		    return sess.getMessages();
-		}
-	    }
+            messages: {
+                type: new GraphQLList(Message),
+                resolve(sess) {
+                    return sess.getMessages();
+                    // return Db.models.message.findAll({where: { sessionId: sess.id }});
+                }
+            }
         }
     }
 });

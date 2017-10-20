@@ -43,10 +43,29 @@ app.use(function(req, res, next) {
 app.get('/person/list', function(req, res) {
   var ret = [];
   
-  Db.models.person.findAll().then(function(person) { ret.push(person); });
-  
-  res.status(200).send(ret);
+  Db.models.person.findAll()
+    .then(person => { ret.push(person); })
+    .done(() => res.status(200).send(ret));
 });
+
+app.get('/session/list', function(req, res) {
+  console.log('UserId=' + req.param('userid'));
+
+  var ret = [];
+  Db.models.session.findAll({ where: { personId: req.param('userid') }})
+    .then(function(session) { ret.push(session)} )
+    .done(() => res.status(200).send(ret));
+});
+
+app.get('/messages/list', function(req, res) {
+  console.log('SessionId=' + req.param('sessionid'));
+
+  var ret = [];
+  Db.models.message.findAll({ where: { sessionId: req.param('sessionid') }})
+    .then(function(message) { ret.push(message)} )
+    .done(() => res.status(200).send(ret));
+});
+
 
 /*
  * Update message databasen

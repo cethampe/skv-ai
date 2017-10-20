@@ -80,8 +80,8 @@ const conn = new Sequelize('database', 'username', 'password', {
       email: 'thomas.hamren@skatteverket.se' });
     Person.create({
       firstName: 'Johan',
-      lastName: 'Klippenberg',
-      email: 'johan.klippenberg@skatteverket.se' });
+      lastName: 'Klippenberger',
+      email: 'johan.klippenberger@skatteverket.se' });
   });
 
   export default conn;

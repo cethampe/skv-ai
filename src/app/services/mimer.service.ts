@@ -31,11 +31,43 @@ export class MimerService {
             .map(function(res) { console.log(res); return new ChattMessage(); } );
     }
 
-    getAllChattSession(user: string): Observable<ChattSession[]> {
-        return null;
+    getAllChattSession(userid: number): Observable<ChattSession[]> {
+        let query_url = this.url + 'session/list?userid=' + userid;
+
+        return this.http.get(query_url)
+            .map(function(body) {
+                let ret = [];
+                let sessions = body.json();
+                for(let i = 0; i < sessions.length; i++) {
+                    let cs = new ChattSession();
+                    cs.id = sessions[i].id;
+                    cs.title = sessions[i].title;
+                    cs.personId = sessions[i].personId;
+
+                    ret.push(cs);
+                }
+
+                return ret;
+            });
     }
 
-    getAllChattMessages(sess: ChattSession): Observable<ChattMessage[]> {
-        return null;
+    getAllChattMessages(sessid: number): Observable<ChattMessage[]> {
+        let query_url = this.url + 'messages/list?sessionid=' + sessid;
+
+        return this.http.get(query_url)
+            .map(function(body) {
+                let ret = [];
+                let messages = body.json();
+                for(let i = 0; i < messages.length; i++) {
+                    let cm = new ChattMessage();
+                    cm.id = messages[i].id;
+                    cm.text = messages[i].title;
+                    cm.user = messages[i].personId;
+
+                    ret.push(cm);
+                }
+
+                return ret;
+            });
     }
 }

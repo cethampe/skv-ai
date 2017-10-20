@@ -3,4 +3,4 @@ export class ChattMessage {
     type: number;
     user: string;
     text: string;
-}
+};
