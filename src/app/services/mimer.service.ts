@@ -63,6 +63,7 @@ export class MimerService {
                     cm.id = messages[i].id;
                     cm.text = messages[i].title;
                     cm.user = messages[i].personId;
+                    cm.type = messages[i].type;
 
                     ret.push(cm);
                 }

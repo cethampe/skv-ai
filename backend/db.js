@@ -46,6 +46,10 @@ const conn = new Sequelize('database', 'username', 'password', {
     content: {
         type: Sequelize.STRING,
         allowNull: false
+    },
+    type: {
+        type: Sequelize.INTEGER,
+        defaultValue: 1
     }
   });
 
